@@ -4,46 +4,72 @@
 **
 ____________________________________________________________________________________*/
 #include <cs50.h>
+#include <math.h>
+#include <stdlib.h>
 #include <stdio.h>
 
-int main(void){
+int
+main(void){
 
-/*cash enter*/
-float cash = get_float("cash: ");
+    /*cash enter*/
+    float insert = get_float("cash: ");
 
-/*Valid entered validate*/
-if (cash < 0)
-{
-    exit(0);
-}
+    /*float for int conversion*/
+    int cash = insert * 100 + 0.0005;
+
+    /*Valid entered validate*/
+    if (cash < 0){
+        exit(0);
+    }
 
 
-/*cashback calculator*/
-short int count = 0;
+    /*cashback calculator*/
+    int count = 0;
 
-/*25$ decrement*/
-for ( cash; (cash - 25) > 0; cash - 25){
-    count++;
-}
+    /*25 decrement*/
+    if (cash >= 25){
+        count = count + (cash / 25);
+        cash = cash - (25 * (cash / 25));
 
-/*10$ decrement*/
-for (cash; (cash - 10) > 0; cash - 10)
-{
-    count++;
-}
+        if (cash == 0)
+        {
+            printf("back: %i",count);
+            exit(0);
+        }
+    }
 
-/*5$ decrement*/
-for ( cash; (cash - 5) > 0; cash - 5){
-    count++;
-}
+    /*10$ decrement*/
+    if (cash >= 10){
+        count = (count + (cash / 10));
+        cash = cash - (10* (cash / 10));
 
-/*1$ decrement*/
-for (cash; (cash - 1) > 0; cash - 1)
-{
-    count++;
-}
+        if (cash == 0)
+        {
+            printf("back: %i ", count);
+            exit(0);
+        }
+    }
 
-/*cashback print*/
-printf("back: %i", count);
+    /*5 decrement*/
+    if (cash >= 5){
+        count = (count + (cash / 5));
+        cash = cash - (5 * (cash / 5));
+        if (cash == 0){
+            printf("back: %i ", count);
+            exit(0);
+        }
+    }
+    /*1 decrement*/
+    if (cash >= 1){
+        count =(count + (cash / 1));
+        cash = cash - (1 * (cash / 1));
 
+        if (cash == 0){
+            printf("back: %i ", count);
+            exit(0);
+        }
+    }
+
+
+    return(0);
 }
