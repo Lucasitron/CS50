@@ -1,0 +1,6 @@
+{
+	"cs50Lib":{
+		"prefix": "cs50",
+		"body": "#include <cs50.h>"
+	}
+}
